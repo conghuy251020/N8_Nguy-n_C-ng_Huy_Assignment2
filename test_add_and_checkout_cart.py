@@ -6,8 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
-from navigation import test_valid_login, test_page_checkout
-from data_validation import test_checkout_product
+from test_navigation import test_valid_login, test_page_checkout
+from test_data_validation import test_checkout_product
 from selenium.common.exceptions import UnexpectedAlertPresentException
 
 
