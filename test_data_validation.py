@@ -19,16 +19,13 @@ def driver():
 # TC1: Xác thực dữ liệu sau khi thêm sản phẩm vào giỏ hàng
 def test_data_product(driver):
     test_valid_login(driver)
-
-    # Chờ 3 giây
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhấn vào nút "Browse All"
     browse_all_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "input[type='submit'][value='Browse All']"))
     )
     browse_all_button.click()
-    time.sleep(3)
 
     # Chờ chuyển hướng đến trang menu
     WebDriverWait(driver, 10).until(EC.url_to_be("http://127.0.0.1:8000/menu"))
@@ -38,14 +35,12 @@ def test_data_product(driver):
         EC.element_to_be_clickable((By.XPATH, "//form[contains(@action, 'http://127.0.0.1:8000/menu/2')]//button[contains(@class, 'btn-success') and text()='Add to Cart']"))
     )
     add_to_cart_button.click()
-    time.sleep(3)
 
     # Nhấn vào biểu tượng giỏ hàng
     shopping_cart_icon = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "i.fa-shopping-cart"))
     )
     shopping_cart_icon.click()
-    time.sleep(3)
 
     # Chờ chuyển hướng đến trang giỏ hàng
     WebDriverWait(driver, 10).until(EC.url_to_be("http://127.0.0.1:8000/cart"))
@@ -54,21 +49,19 @@ def test_data_product(driver):
 # TC2: Xác thực dữ liệu sau khi thanh toán đơn hàng
 def test_checkout_product(driver):
     test_page_checkout(driver)
-    time.sleep(3)
+    time.sleep(1)
 
     # Chờ radio button "cod" có thể nhấn được và nhấn vào nó
     cod_radio_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.ID, "cod"))
     )
     cod_radio_button.click()
-    time.sleep(3)
 
     # Chờ nút "Place Order" có thể nhấn được và nhấn vào nó
     place_order_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//input[@type='submit' and @value='Place Order']"))
     )
     place_order_button.click()
-    time.sleep(3)
 
     # Nhập địa chỉ vào ô "address"
     address_field = WebDriverWait(driver, 10).until(
@@ -76,7 +69,7 @@ def test_checkout_product(driver):
     )
     address_field.clear()
     address_field.send_keys("372 Dương Bá Trạc")
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhập địa chỉ phụ vào ô "address2"
     address2_field = WebDriverWait(driver, 10).until(
@@ -84,21 +77,21 @@ def test_checkout_product(driver):
     )
     address2_field.clear()
     address2_field.send_keys("272 An Dương Vương")
-    time.sleep(3)
+    time.sleep(1)
 
     # Chọn quốc gia "Bangladesh" từ dropdown "country"
     country_dropdown = Select(WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.ID, "country"))
     ))
     country_dropdown.select_by_visible_text("Bangladesh")
-    time.sleep(3)
+    time.sleep(1)
 
     # Chọn bang "Dhaka" từ dropdown "state"
     state_dropdown = Select(WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.ID, "state"))
     ))
     state_dropdown.select_by_visible_text("Dhaka")
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhấn nút "Confirm order"
     confirm_order_button = WebDriverWait(driver, 10).until(
@@ -106,7 +99,7 @@ def test_checkout_product(driver):
             (By.XPATH, "//button[@class='btn btn-primary' and contains(text(), 'Confirm order')]"))
     )
     confirm_order_button.click()
-    time.sleep(3)
+    time.sleep(1)
 
     # Truy cập trang chính
     driver.get("http://127.0.0.1:8000")
@@ -116,21 +109,17 @@ def test_checkout_product(driver):
         EC.element_to_be_clickable((By.XPATH, "//a[@href='/my-order']"))
     )
     my_order_link.click()
-    time.sleep(3)
 
 # TC3: Xác thực dữ liệu theo dõi đơn hàng
 def test_trace_order(driver):
     test_valid_login(driver)
-
-    # Chờ 3 giây
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhấn vào nút "Browse All"
     browse_all_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "input[type='submit'][value='Browse All']"))
     )
     browse_all_button.click()
-    time.sleep(3)
 
     # Chờ chuyển hướng đến trang menu
     WebDriverWait(driver, 10).until(EC.url_to_be("http://127.0.0.1:8000/menu"))
@@ -141,14 +130,14 @@ def test_trace_order(driver):
                                     "//form[contains(@action, 'http://127.0.0.1:8000/menu/1')]//button[contains(@class, 'btn-success') and text()='Add to Cart']"))
     )
     add_to_cart_button.click()
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhấn vào biểu tượng giỏ hàng
     shopping_cart_icon = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "i.fa-shopping-cart"))
     )
     shopping_cart_icon.click()
-    time.sleep(3)
+    time.sleep(1)
 
     # Chờ chuyển hướng đến trang giỏ hàng
     WebDriverWait(driver, 10).until(EC.url_to_be("http://127.0.0.1:8000/cart"))
@@ -159,21 +148,21 @@ def test_trace_order(driver):
         EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-success"))
     )
     checkout_button.click()
-    time.sleep(3)
+    time.sleep(1)
 
     # Chờ radio button "cod" có thể nhấn được và nhấn vào nó
     cod_radio_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.ID, "cod"))
     )
     cod_radio_button.click()
-    time.sleep(3)
+    time.sleep(1)
 
     # Chờ nút "Place Order" có thể nhấn được và nhấn vào nó
     place_order_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//input[@type='submit' and @value='Place Order']"))
     )
     place_order_button.click()
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhập địa chỉ vào ô "address"
     address_field = WebDriverWait(driver, 10).until(
@@ -181,7 +170,7 @@ def test_trace_order(driver):
     )
     address_field.clear()
     address_field.send_keys("372 Dương Bá Trạc")
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhập địa chỉ phụ vào ô "address2"
     address2_field = WebDriverWait(driver, 10).until(
@@ -189,21 +178,21 @@ def test_trace_order(driver):
     )
     address2_field.clear()
     address2_field.send_keys("272 An Dương Vương")
-    time.sleep(3)
+    time.sleep(1)
 
     # Chọn quốc gia "Bangladesh" từ dropdown "country"
     country_dropdown = Select(WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.ID, "country"))
     ))
     country_dropdown.select_by_visible_text("Bangladesh")
-    time.sleep(3)
+    time.sleep(1)
 
     # Chọn bang "Dhaka" từ dropdown "state"
     state_dropdown = Select(WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.ID, "state"))
     ))
     state_dropdown.select_by_visible_text("Dhaka")
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhấn nút "Confirm order"
     confirm_order_button = WebDriverWait(driver, 10).until(
@@ -211,7 +200,7 @@ def test_trace_order(driver):
             (By.XPATH, "//button[@class='btn btn-primary' and contains(text(), 'Confirm order')]"))
     )
     confirm_order_button.click()
-    time.sleep(3)
+    time.sleep(1)
 
     # Lấy giá trị của Invoice no từ thẻ <h3>
     invoice_no = WebDriverWait(driver, 10).until(
@@ -226,14 +215,13 @@ def test_trace_order(driver):
 
     # Trở lại trang chủ
     driver.get("http://127.0.0.1:8000")
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhấn vào nút "Trace Order"
     trace_order_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.LINK_TEXT, "Trace Order"))
     )
     trace_order_button.click()
-    time.sleep(3)
 
     # Nhập Invoice no vào ô nhập
     invoice_input = WebDriverWait(driver, 10).until(
@@ -241,7 +229,7 @@ def test_trace_order(driver):
     )
     invoice_input.clear()
     invoice_input.send_keys(invoice_no)
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhập số điện thoại vào ô nhập
     phone_input = WebDriverWait(driver, 10).until(
@@ -249,14 +237,14 @@ def test_trace_order(driver):
     )
     phone_input.clear()
     phone_input.send_keys("0367195476")  # Nhập số điện thoại theo yêu cầu
-    time.sleep(3)
+    time.sleep(1)
 
     # Nhấn nút "Submit"
     submit_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.ID, "form-submit"))
     )
     submit_button.click()
-    time.sleep(3)
+    time.sleep(1)
 
 
 

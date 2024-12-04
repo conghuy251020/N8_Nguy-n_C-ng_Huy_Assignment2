@@ -20,37 +20,33 @@ def driver():
 def test_valid_login(driver):
     # Truy cập vào trang web đăng nhập
     driver.get("http://127.0.0.1:8000")
-    time.sleep(2)  # Thêm thời gian chờ sau khi tải trang
+    time.sleep(1)  # Thêm thời gian chờ sau khi tải trang
 
     # Nhấn vào nút "Log in" để chuyển hướng đến trang đăng nhập
     login_link = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "a[href='http://127.0.0.1:8000/login']"))
     )
     login_link.click()
-    time.sleep(2)  # Thêm thời gian chờ sau khi nhấn vào liên kết
+    time.sleep(1)  # Thêm thời gian chờ sau khi nhấn vào liên kết
 
     # Đợi trang đăng nhập tải xong
     WebDriverWait(driver, 10).until(EC.url_to_be("http://127.0.0.1:8000/login"))
-    time.sleep(2)  # Thêm thời gian chờ để trang ổn định
 
     # Nhập email
     email_input = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.ID, "email"))
     )
     email_input.send_keys("conghuy251020@gmail.com")
-    time.sleep(1)  # Thêm thời gian chờ sau khi nhập email
 
     # Nhập password
     password_input = driver.find_element(By.ID, "password")
     password_input.send_keys("123456789")
-    time.sleep(1)  # Thêm thời gian chờ sau khi nhập password
 
     # Tìm và nhấn nút "Log in" bằng CSS Selector
     login_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
     )
     login_button.click()
-    time.sleep(3)  # Thêm thời gian chờ sau khi nhấn nút "Log in"
 
     # Chờ chuyển hướng đến trang `http://127.0.0.1:8000/redirects`
     WebDriverWait(driver, 10).until(EC.url_to_be("http://127.0.0.1:8000/redirects"))

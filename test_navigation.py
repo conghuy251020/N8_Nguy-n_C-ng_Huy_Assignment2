@@ -20,7 +20,7 @@ def driver():
 def test_valid_login(driver):
     # Truy cập vào trang web đăng nhập
     driver.get("http://127.0.0.1:8000")
-    time.sleep(2)  # Thêm thời gian chờ sau khi tải trang
+    time.sleep(1)  # Thêm thời gian chờ sau khi tải trang
 
     # Nhấn vào nút "Log in" để chuyển hướng đến trang đăng nhập
     login_link = WebDriverWait(driver, 10).until(
